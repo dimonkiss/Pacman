@@ -13,13 +13,26 @@ class Pacman(Entity):
         self.speed = 100 * TILEWIDTH/16
         self.radius = 10
         self.color = YELLOW
+        self.direction = LEFT
+        self.setBetweenNodes(LEFT)
         self.node = node
-        self.setPosition()
+        # self.setPosition()
         self.target = node
         self.collideRadius = 5
+        self.alive = True
 
     def setPosition(self):
         self.position = self.node.position.copy()
+
+    def reset(self):
+        Entity.reset(self)
+        self.direction = LEFT
+        self.setBetweenNodes(LEFT)
+        self.alive = True
+
+    def die(self):
+        self.alive = False
+        self.direction = STOP
 
     def update(self, dt):	
         self.position += self.directions[self.direction]*self.speed*dt
