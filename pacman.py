@@ -3,6 +3,7 @@ from pygame.locals import *
 from vector import Vector2
 from constants import *
 from entity import Entity
+from sprites import PacmanSprites
 
 class Pacman(Entity):
     def __init__(self, node):
@@ -20,6 +21,7 @@ class Pacman(Entity):
         self.target = node
         self.collideRadius = 5
         self.alive = True
+        self.sprites = PacmanSprites(self)
 
     def setPosition(self):
         self.position = self.node.position.copy()
@@ -34,7 +36,8 @@ class Pacman(Entity):
         self.alive = False
         self.direction = STOP
 
-    def update(self, dt):	
+    def update(self, dt):
+        self.sprites.update(dt)	
         self.position += self.directions[self.direction]*self.speed*dt
         direction = self.getValidKey()
         if self.overshotTarget():
@@ -113,7 +116,3 @@ class Pacman(Entity):
         if dSquared <= rSquared:
             return True
         return False
-
-    def render(self, screen):
-        p = self.position.asInt()
-        pygame.draw.circle(screen, self.color, p, self.radius)
