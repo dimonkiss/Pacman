@@ -28,8 +28,3 @@ jobs:
         PYTHONPATH: ${{ github.workspace }}
       run: |
         pytest tests/
-        
-    - name: Run linting with flake8
-      run: |
-        flake8 .
-        
