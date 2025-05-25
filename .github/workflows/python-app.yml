@@ -31,10 +31,3 @@ jobs:
       run: |
         flake8 . --format=html --htmldir=flake8-report
         
-    - name: Upload test results
-      uses: actions/upload-artifact@latest
-      with:
-        name: test-results
-        path: |
-          test-report.html
-          flake8-report/ 
