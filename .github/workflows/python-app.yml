@@ -25,9 +25,9 @@ jobs:
         
     - name: Run tests with pytest
       run: |
-        pytest tests/ --html=test-report.html
+        pytest tests/
         
     - name: Run linting with flake8
       run: |
-        flake8 . --format=html --htmldir=flake8-report
+        flake8 .
         
