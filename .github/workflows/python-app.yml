@@ -27,4 +27,12 @@ jobs:
       env:
         PYTHONPATH: ${{ github.workspace }}
       run: |
-        pytest tests/
+        pytest tests/ --html=test-report.html --self-contained-html
+        
+    - name: Upload test report
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: test-report
+        path: test-report.html
+        retention-days: 30
