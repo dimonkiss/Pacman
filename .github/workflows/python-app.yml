@@ -23,8 +23,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
         
-    - name: Run tests with pytest
+    - name: Run tests with coverage
       env:
         PYTHONPATH: ${{ github.workspace }}
       run: |
-        pytest tests/
+        pytest tests/ --cov=. --cov-report=html --cov-report=term-missing
